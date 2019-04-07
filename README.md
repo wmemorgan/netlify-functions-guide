@@ -40,28 +40,37 @@ Netlify provides integration to AWS Lambda functions which enables developers to
   This command will open a browser window asking you to login to Netlify and grant access to Netlify CLI.
 
 ### Project Setup
-```
-├── /api
-|  └── server.js
-|  └── ...
-├── /client
-|  └── /node_modules
-|  └── package.json
-|  └── ...
-└── /node_modules
-└── package.json
-└──....
-```
+
+Here is the basic file structure layout:
+
+  ```
+  ├── /api
+  |  └── server.js
+  |  └── ...
+  ├── /client
+  |  └── /node_modules
+  |  └── package.json
+  |  └── /public
+  |      └── index.html
+  |      └── ...
+  |  └── /src
+  |      └── App.js
+  |      └── index.js
+  |      └── ...
+  └── /node_modules
+  └── package.json
+  └──....
+  ```
 
 #### Backend Setup
-- Install the Node/Express boilerplate (package.json and node_modules) in the root directory
+- Install the Node/Express boilerplate files (package.json and node_modules) in the root directory
 - In addition to installing Express and whatever 3rd party packages you need you will also need to install a package called `serverless-http`
   
   `yarn add serverless-http`
 
   This module enables your Express.js app to run as a serverless function
 
-- Create a directory named `api` and move your Node server file(s) (server.js or index.js) to that directory.
+- Create a directory named `api` and move your Node server file(s) (server.js or index.js) into that directory.
 
 #### Staging Express App
 When staging your Express server to use Netlify functions there are two things to keep in mind.
@@ -69,7 +78,13 @@ When staging your Express server to use Netlify functions there are two things t
 
   `app.use('/.netlify/functions/server', router);`
 
-- To make Express.js work with Netlify Lambda Functions we need to require the serverless-http package, then use it to wrap the app and export it.
+- To make Express.js work with Netlify Lambda Functions we need to require the serverless-http package 
+
+  ```
+  const serverless = require('serverless-http')
+  ```
+
+- Then use it to wrap the app and export it.
 
   ```
   module.exports = app;
@@ -77,8 +92,7 @@ When staging your Express server to use Netlify functions there are two things t
   ```
 
 #### Setup Netlify on your local machine
-- Create a `netlify.toml` configuration file which tells Netlify how to 
-how to build and deploy your site. In the file add the following entries:
+- Create a `netlify.toml` configuration file which tells Netlify how to build and deploy your site. In the file add the following entries:
 
 ```
 [build]
@@ -90,7 +104,7 @@ how to build and deploy your site. In the file add the following entries:
   You can learn more about additional settings in the `netlify.toml` file [here](https://www.netlify.com/docs/netlify-toml-reference/).
 
 Netlify has a package called `netlify-lambda` that enables you to run your function on your local machine
-- Still in the root directory install netlify lambda and serverless-http packages
+- While still in the root directory install netlify lambda
 
   `yarn add netlify-lambda --dev`
 
@@ -100,11 +114,11 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
   The serve command will start a development server and a watcher on port 9000 (http://localhost:9000).
 
 #### Setup serve and build scripts
-- In the root directory install package called `npm-run-all` which will enable you to start the Express server and React app with one command.
+- In the root directory install a package called `npm-run-all` which will enable you to start the Express server and React app with one command.
 
   `yarn add npm-run-all --dev`
 
-- Open `package.json` and in the `scripts` section replace the default script with following scripts:
+- Open `package.json` go the `scripts` section and replace the default script with following commands:
 
   ```
     "start": "yarn start:lambda && yarn start:app",
@@ -112,18 +126,21 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
     "start:lambda": "netlify-lambda serve api",
     "prod": "yarn build:lambda; yarn build:app",
     "build:app": "cd client && yarn install && yarn build",
-    "build:lambda": "netlify-lambda build api",
+    "build:lambda": "netlify-lambda build api"
   ```
 
+*NOTE: In the `start:app` script we are passing an environment variable `REACT_APP_API_ENDPOINT` which will use for API calls in our React app.*
+
 #### Frontend Setup
-- In the root directory run `create-react-app client`. You can develop your app as your normally do or copy on existing one.
-- To call the API in React we create a global variable for the endpoint URL:
-  `const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || '/'`*
+- In the root directory run `create-react-app client`. You can develop your app as your normally do or copy an existing one.
+- To call the API in React we create a global variable for the endpoint URL that can be used on our local machine and in a production environment.
+
+  `const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || '/'`
 
 - Here is an example of how to use it in an api call:
   `axios.get(`${API_ENDPOINT}.netlify/functions/server/api/movies`)...`
   
-**NOTE: We are passing a parameter in the when starting the react app that assign the localserver information.*
+*NOTE: We are passing an enviroment variable in the start react script that assigns the localserver information.*
 
 
 
