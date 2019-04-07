@@ -98,7 +98,11 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
   The serve command will start a development server and a watcher on port 9000 (http://localhost:9000).
 
 #### Setup serve and build scripts
-- In the root directory open `package.json` and in the `scripts` section replace the default script with following scripts:
+- In the root directory install package called `npm-run-all` which will enable you to start the Express server and React app with one command.
+
+  `yarn add npm-run-all --dev`
+
+- Open `package.json` and in the `scripts` section replace the default script with following scripts:
 
   ```
     "start": "yarn start:lambda && yarn start:app",
