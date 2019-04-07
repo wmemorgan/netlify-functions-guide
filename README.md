@@ -2,10 +2,23 @@
 
 _These instructons were adopted from a [blog article](https://blog.bitsrc.io/react-production-deployment-part-1-netlify-703686631dd1) by Esua Silva_
 
-Netlify provides integration to AWS Lambda functions which enables developers to run server side without a dedicated server. You can learn more about the service in their <a href="https://www.netlify.com/docs/functions/" target="_blank">official documentation</a>.
+Netlify provides integration to AWS Lambda functions which enables developers to run server side without a dedicated server. You can learn more about the service in their [official documentation](https://www.netlify.com/docs/functions/).
 
-## Host a React/Node/Express project
+[Host a Express/Node/React project](#ENRhosting)
+[Prerequisites](#prerequisites)
+[Netlify Command Line Tools](#netlifycli)
+[Project Setup](#project_setup)
+[Backend Setup]
+[Staging Express App]
+[Setup Netlify on your local machine]
+[Configure serve and build scripts]
+[Frontend Setup]
 
+---
+<a name="ENRhosting">
+## Host a Express/Node/React project
+
+<a name="prerequisites">
 ### Prerequisites
 - Node v8 or higher installed on your computer
 - `create-react-app` installed on your computer
@@ -16,6 +29,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
 
 *NOTE: I will use Yarn for my package installation and script commands but you can do the same things using npm.*
 
+<a name="netlifycli">
 ### Netlify Command Line Tools (macOS)
 
 - Install [Netlify's command line interface (CLI)](https://www.netlify.com/docs/cli/) on your workstation
@@ -26,6 +40,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
 
   This command will open a browser window asking you to login to Netlify and grant access to Netlify CLI.
 
+<a name="project_setup">
 ### Project Setup
 ```
 ├── /api
@@ -40,7 +55,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
 └──....
 ```
 
-#### Setup Backend
+#### Backend Setup
 - Install the Node/Express boilerplate (package.json and node_modules) in the root directory
 - In addition to installing Express and whatever 3rd party packages you need you will also need to install a package called `serverless-http`
   
@@ -50,7 +65,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
 
 - Create a directory named `api` and move your Node server file(s) (server.js or index.js) to that directory.
 
-#### Staging Express
+#### Staging Express App
 When staging your Express server to use Netlify functions there are two things to keep in mind.
 - Use `express.Router()` class to handle routes and load it as middleware for your app:
 
@@ -98,7 +113,7 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
     "build:lambda": "netlify-lambda build api",
   ```
 
-#### Setup Frontend
+#### Frontend Setup
 - In the root directory run `create-react-app client`. You can develop your app as your normally do or copy on existing one.
 - To call the API in React we create a global variable for the endpoint URL:
   `const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || '/'`*
