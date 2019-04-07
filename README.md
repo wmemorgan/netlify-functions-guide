@@ -4,21 +4,19 @@ _These instructons were adopted from a [blog article](https://blog.bitsrc.io/rea
 
 Netlify provides integration to AWS Lambda functions which enables developers to run server side without a dedicated server. You can learn more about the service in their [official documentation](https://www.netlify.com/docs/functions/).
 
-[Host a Express/Node/React project](#ENRhosting)
+[Host a Express/Node/React project](#host-a-express/node/react-project)
 [Prerequisites](#prerequisites)
-[Netlify Command Line Tools](#netlifycli)
-[Project Setup](#project_setup)
-[Backend Setup]
-[Staging Express App]
-[Setup Netlify on your local machine]
-[Configure serve and build scripts]
-[Frontend Setup]
+[Netlify Command Line Tools](#netlify-command-line-tools)
+[Project Setup](#project-setup)
+[Backend Setup](#backend-setup)
+[Staging Express App](#staging-express-app)
+[Setup Netlify on your local machine](#setup-netlify-on-your-local-machine)
+[Configure serve and build scripts](#configure-serve-and-build-scripts)
+[Frontend Setup](#frontend-setup)
 
 ---
-<a name="ENRhosting">
 ## Host a Express/Node/React project
 
-<a name="prerequisites">
 ### Prerequisites
 - Node v8 or higher installed on your computer
 - `create-react-app` installed on your computer
@@ -29,8 +27,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
 
 *NOTE: I will use Yarn for my package installation and script commands but you can do the same things using npm.*
 
-<a name="netlifycli">
-### Netlify Command Line Tools (macOS)
+### Netlify Command Line Tools
 
 - Install [Netlify's command line interface (CLI)](https://www.netlify.com/docs/cli/) on your workstation
   `npm install netlify-cli -g`
@@ -40,7 +37,6 @@ Netlify provides integration to AWS Lambda functions which enables developers to
 
   This command will open a browser window asking you to login to Netlify and grant access to Netlify CLI.
 
-<a name="project_setup">
 ### Project Setup
 ```
 ├── /api
