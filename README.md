@@ -4,7 +4,7 @@ _These instructons were adopted from a [blog article](https://blog.bitsrc.io/rea
 
 Netlify provides integration to AWS Lambda functions which enables developers to run server side without a dedicated server. You can learn more about the service in their [official documentation](https://www.netlify.com/docs/functions/).
 
-  - [Host a Express-Node-React project](#host-a-express-node-react-project)
+  - [Deploy Express and React App](#deploy-express-and-react-app)
   - [Prerequisites](#prerequisites)
   - [Netlify Command Line Tools](#netlify-command-line-tools)
   - [Project Setup](#project-setup)
@@ -15,7 +15,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
   - [Frontend Setup](#frontend-setup)
 
 ---
-## Host a Express-Node-React project
+## Deploy Express and React App
 
 ### Prerequisites
 - Node v8 or higher installed on your computer
