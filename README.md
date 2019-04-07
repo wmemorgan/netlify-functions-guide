@@ -15,7 +15,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
   - [Frontend Setup](#frontend-setup)
 
 ---
-## Host a Express/Node/React project
+## Host a Express-Node-React project
 
 ### Prerequisites
 - Node v8 or higher installed on your computer
