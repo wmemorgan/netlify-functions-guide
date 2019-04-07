@@ -1,0 +1,26 @@
+{
+  "name": "netlify-express",
+  "version": "1.0.0",
+  "description": "Example of a React client and Express backend deployed on Netlify",
+  "main": "api/server.js",
+  "repository": "git@github.com:wmemorgan/netlify-express.git",
+  "author": "Wilfred Morgan <wil.me.morgan@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "run-p start:**",
+    "start:app": "cd client && REACT_APP_API_ENDPOINT='http://localhost:9000/' yarn start",
+    "start:lambda": "netlify-lambda serve api",
+    "prod": "yarn build:lambda; yarn build:app",
+    "build:app": "cd client && yarn install && yarn run build",
+    "build:lambda": "netlify-lambda build api"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "serverless-http": "^1.9.1"
+  },
+  "devDependencies": {
+    "netlify-lambda": "^1.4.3",
+    "npm-run-all": "^4.1.5"
+  }
+}
