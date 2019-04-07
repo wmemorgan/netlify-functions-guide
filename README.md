@@ -76,17 +76,19 @@ Here is a layout of the basic file structure:
 When staging your Express server to use Netlify functions there are two things to keep in mind.
 - Use `express.Router()` class to handle routes and load it as middleware for your app:
 
-  `app.use('/.netlify/functions/server', router);`
+  ```javascript
+  app.use('/.netlify/functions/server', router);
+  ```
 
 - To make Express.js work with Netlify Lambda Functions we need to require the serverless-http package 
 
-  ```
-  const serverless = require('serverless-http')
+  ```javascript
+  const serverless = require('serverless-http');
   ```
 
 - Then use it to wrap the app and export it.
 
-  ```
+  ```javascript
   module.exports = app;
   module.exports.handler = serverless(app);
   ```
@@ -105,7 +107,7 @@ When staging your Express server to use Netlify functions there are two things t
 
 Netlify has a package called `netlify-lambda` that enables you to run your function on your local machine
 - While still in the root directory install netlify lambda
-
+  
   `yarn add netlify-lambda --dev`
 
 - You can use serve your functions locally for development by running:
@@ -120,7 +122,7 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
 
 - Open `package.json` go the `scripts` section and replace the default script with following commands:
 
-  ```
+  ```javascript
     "start": "yarn start:lambda && yarn start:app",
     "start:app": "cd client && REACT_APP_API_ENDPOINT='http://localhost:9000/' yarn start",
     "start:lambda": "netlify-lambda serve api",
@@ -135,10 +137,15 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
 - In the root directory run `create-react-app client`. You can develop your app as your normally do or copy an existing one.
 - To call the API in React we create a global variable for the endpoint URL that can be used on our local machine and in a production environment.
 
-  `const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || '/'`
+  ```javascript
+  const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || '/'
+  ```
 
 - Here is an example of how to use it in an api call:
-  `axios.get(`${API_ENDPOINT}.netlify/functions/server/api/movies`)...`
+
+  ```javascript
+  axios.get(`${API_ENDPOINT}.netlify/functions/server/api/movies`)
+  ```
   
 *NOTE: We are passing an enviroment variable in the start react script that assigns the localserver information.*
 
