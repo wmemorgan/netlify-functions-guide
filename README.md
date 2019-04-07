@@ -25,7 +25,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
 - Install the Netlify App on GitHub. Read documentation [here](https://www.netlify.com/docs/github-permissions/).
 - Yarn package manager (optional)*
 
-*NOTE: I will use Yarn for my package installation and script commands but you can do the same things using npm.*
+*NOTE: I use yarn for my package installation and script commands but you can do the same things using npm.*
 
 ### Netlify Command Line Tools
 
