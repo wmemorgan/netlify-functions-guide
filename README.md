@@ -41,7 +41,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
 
 ### Project Setup
 
-Here is the basic file structure layout:
+Here is a layout of the basic file structure:
 
   ```
   ├── /api
