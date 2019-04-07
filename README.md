@@ -1,8 +1,10 @@
 # Netlify Functions Guide
 
-_These instructons were adopted from a [blog article](https://blog.bitsrc.io/react-production-deployment-part-1-netlify-703686631dd1) by Esua Silva_
+_These instructons were adopted from a [Medium article](https://blog.bitsrc.io/react-production-deployment-part-1-netlify-703686631dd1) by Esua Silva_
 
-Netlify provides integration to AWS Lambda functions which enables developers to run server side without a dedicated server. You can learn more about the service in their [official documentation](https://www.netlify.com/docs/functions/).
+Netlify provides integration to AWS Lambda functions which enables developers to run server side code without a dedicated server. You can learn more about the service in their [official documentation](https://www.netlify.com/docs/functions/).
+
+## Table of Contents
 
   - [Deploy Express and React App](#deploy-express-and-react-app)
   - [Prerequisites](#prerequisites)
