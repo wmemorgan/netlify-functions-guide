@@ -15,6 +15,7 @@ Netlify provides integration to AWS Lambda functions which enables developers to
   - [Setup Netlify on your local machine](#setup-netlify-on-your-local-machine)
   - [Configure serve and build scripts](#configure-serve-and-build-scripts)
   - [Frontend Setup](#frontend-setup)
+  - [Deploy to Netlify](#deploy-to-netlify)
 
 ---
 ## Deploy Express and React App
@@ -149,6 +150,14 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
   
 *NOTE: We are passing an enviroment variable in the start react script that assigns the localserver information.*
 
+#### Deploy to Netlify
+Setup continuous deployment where push commits to your GitHub repository will trigger the app to build and deploy. 
+
+-Connect your repository to Netlify by running the following command from your local repository:
+
+  `netlify init`
+
+You’ll be prompted to log in to your GitHub account, which will create an account-level access token in your home directory under `.netlify/config.json`. Detailed information regarding continuous deployment can be found in the [documentation](https://www.netlify.com/docs/cli/#continuous-deployment).
 
 
 
