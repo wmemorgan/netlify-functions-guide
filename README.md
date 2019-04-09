@@ -97,14 +97,21 @@ When staging your Express server to use Netlify functions there are two things t
 #### Setup Netlify on your local machine
 - Create a `netlify.toml` configuration file which tells Netlify how to build and deploy your site. In the file add the following entries:
 
-```
-[build]
-  command = "yarn prod"
-  functions = "functions"
-  publish = "client/build"
-```
+  ```
+  [build]
+    command = "yarn prod"
+    functions = "functions"
+    publish = "client/build"
 
-  You can learn more about additional settings in the `netlify.toml` file [here](https://www.netlify.com/docs/netlify-toml-reference/).
+  [[redirects]]
+      from = "/*"
+      to = "/index.html"
+  status = 200  
+  ```
+
+**NOTE:** By default Netlify will look for literal pages in a Single Page Application if you refresh your browser page outside of the root directory. The `[[redirects]]` entry is to ensure Netlify properly handles Single Page Applications by redirecting all of the requests to `index.html`. You can learn more about Netlify redirect handling [here](https://www.netlify.com/docs/redirects/).
+
+You can learn more about additional settings in the `netlify.toml` file [here](https://www.netlify.com/docs/netlify-toml-reference/). 
 
 Netlify has a package called `netlify-lambda` that enables you to run your function on your local machine
 - While still in the root directory install netlify lambda
@@ -114,7 +121,7 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
 - You can use serve your functions locally for development by running:
   `netlify-lambda serve <directory>`
 
-  The serve command will start a development server and a watcher on port 9000 (http://localhost:9000).
+The serve command will start a development server and a watcher on port 9000 (http://localhost:9000).
 
 #### Setup serve and build scripts
 - In the root directory install a package called `npm-run-all` which will enable you to start the Express server and React app with one command.
@@ -132,7 +139,7 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
     "build:lambda": "netlify-lambda build api"
   ```
 
-*NOTE: In the `start:app` script we are passing an environment variable `REACT_APP_API_ENDPOINT` which will use for API calls in our React app.*
+*NOTE: In the `start:app` script we are passing an environment variable `REACT_APP_API_ENDPOINT` which will be used for API calls in our React app.*
 
 #### Frontend Setup
 - In the root directory run `create-react-app client`. You can develop your app as your normally do or copy an existing one.
@@ -153,7 +160,7 @@ Netlify has a package called `netlify-lambda` that enables you to run your funct
 #### Deploy to Netlify
 Setup continuous deployment where push commits to your GitHub repository will trigger the app to build and deploy. 
 
--Connect your repository to Netlify by running the following command from your local repository:
+- Connect your repository to Netlify by running the following command from your local repository:
 
   `netlify init`
 
