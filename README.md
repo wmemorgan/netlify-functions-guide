@@ -131,7 +131,7 @@ The serve command will start a development server and a watcher on port 9000 (ht
 - Open `package.json` go the `scripts` section and replace the default script with following commands:
 
   ```javascript
-    "start": "yarn start:lambda && yarn start:app",
+    "start": "run-p start:**",
     "start:app": "cd client && REACT_APP_API_ENDPOINT='http://localhost:9000/' yarn start",
     "start:lambda": "netlify-lambda serve api",
     "prod": "yarn build:lambda; yarn build:app",
